@@ -36,7 +36,11 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
-
+let button = document.getElementById('send');
+let imageField = document.getElementById('image');
+let nameField = document.getElementById('name');
+let roleField = document.getElementById('role');
+let emailField = document.getElementById('email');
 //dichiaro una funzione che mi crei la singola card che ho commentato prima
 const createMemberCard = (member) => {
   //questa è la funzione che mi crea la singola card del membro del team
@@ -75,3 +79,33 @@ const renderTeam = (array) =>{
 
 //chiamata della funzione renderTeam
 renderTeam(teamMembers);
+button.addEventListener('click', (e) => {
+  e.preventDefault();
+  //recupero i valori che vengono inseriti nella form
+  const name = nameField.value;
+  const role = roleField.value;
+  const email = emailField.value;
+  const image = imageField.value;
+  if(!name || !role || !email || !image){
+    alert ('Devi compilare tutti i campi!');
+    return;
+  }
+  //creo l'oggetto del nuovo membro
+  const newMember = {
+    image,
+    name,
+    role,
+    email,
+  }
+  //aggiungo il nuovo elemento all'elemento array
+  teamMembers.push(newMember);
+  imageField.value = '';
+  nameField.value = '';
+  roleField.value = '';
+  emailField.value = '';
+
+  // renderizzo il nuovo team
+  renderTeam(teamMembers);
+  console.log(teamMembers);
+
+});
