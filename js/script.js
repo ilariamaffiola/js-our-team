@@ -62,10 +62,15 @@ const createMemberCard = (member) => {
 }
 //funzione che mi renderizza il contenuto dell'array
 const renderTeam = (array) =>{
+  //mi dichiaro una variabile con valore stringa che conterrà tutte le colonne da mostrare concatenandole come stringhe
   let cards = '';
+  //ciclo l'aaray con le componenti del team passandole come parametro
   for(let i=0 ; i<array.length; i++){
+    //concateno il valore contenuto nella variabile cards, con quello restitutomi dalla funzione createMemberCard (una stringa)
     cards+= createMemberCard(array[i])
   }
+  //mi recupero dal dom l'elemento con team-members e gli vado ad assegnare all'innerHTML il contenuto della variabile cards
   document.getElementById('team-members').innerHTML= cards;
 }
+//chiamata della funzione renderTeam
 renderTeam(teamMembers);
