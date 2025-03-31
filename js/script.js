@@ -60,3 +60,12 @@ const createMemberCard = (member) => {
             console.log(card);
             return card;
 }
+//funzione che mi renderizza il contenuto dell'array
+const renderTeam = (array) =>{
+  let cards = '';
+  for(let i=0 ; i<array.length; i++){
+    cards+= createMemberCard(array[i])
+  }
+  document.getElementById('team-members').innerHTML= cards;
+}
+renderTeam(teamMembers);
