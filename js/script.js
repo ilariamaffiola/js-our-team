@@ -44,6 +44,7 @@ let emailField = document.getElementById('email');
 //dichiaro una funzione che mi crei la singola card che ho commentato prima
 const createMemberCard = (member) => {
   //questa è la funzione che mi crea la singola card del membro del team
+  console.log(member);
   const {name, role, email, img} = member;
   const card = `<div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card bg-black">
@@ -61,7 +62,7 @@ const createMemberCard = (member) => {
                     </div>
                 </div>
             </div>`;
-            console.log(card);
+            //console.log(card);
             return card;
 }
 //funzione che mi renderizza il contenuto dell'array
@@ -73,13 +74,14 @@ const renderTeam = (array) =>{
     //concateno il valore contenuto nella variabile cards, con quello restitutomi dalla funzione createMemberCard (una stringa)
     cards+= createMemberCard(array[i])
   }
+
   //mi recupero dal dom l'elemento con team-members e gli vado ad assegnare all'innerHTML il contenuto della variabile cards
   document.getElementById('team-members').innerHTML= cards;
 }
-
 //chiamata della funzione renderTeam
 renderTeam(teamMembers);
 button.addEventListener('click', (e) => {
+  
   e.preventDefault();
   //recupero i valori che vengono inseriti nella form
   const name = nameField.value;
@@ -92,7 +94,7 @@ button.addEventListener('click', (e) => {
   }
   //creo l'oggetto del nuovo membro
   const newMember = {
-    image,
+    img: image,
     name,
     role,
     email,
@@ -103,9 +105,10 @@ button.addEventListener('click', (e) => {
   nameField.value = '';
   roleField.value = '';
   emailField.value = '';
-
+  
   // renderizzo il nuovo team
   renderTeam(teamMembers);
-  console.log(teamMembers);
 
+  console.log(teamMembers);
+  
 });
